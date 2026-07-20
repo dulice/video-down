@@ -3,7 +3,6 @@ const downloadBtns = document.querySelectorAll('#downloadBtn, #navDownloadBtn, #
 const installModal = document.getElementById('installModal');
 const closeModal = document.getElementById('closeModal');
 const installButton = document.querySelector('.install-button.primary');
-const platformButtons = document.querySelectorAll('.platform-button');
 const faqItems = document.querySelectorAll('.faq-item');
 const previewVideo = document.getElementById('previewVideo');
 const playBtn = document.getElementById('playBtn');
@@ -31,6 +30,19 @@ if (playBtn && previewVideo) {
     });
 }
 
+// Download URL
+const downloadUrl = 'https://www.dropbox.com/scl/fi/y5p5jzcysbxynsk6z900u/VideoDown.apk?rlkey=hhs93xh17jijkixhwpknmm7oz&st=1rvrvmjj&dl=1';
+
+function triggerDownload() {
+    const a = document.createElement('a');
+    a.href = downloadUrl;
+    a.download = '';
+    a.target = '_self';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+
 // Download Video Button - Show Install Modal
 if (downloadVideoBtn) {
     downloadVideoBtn.addEventListener('click', () => {
@@ -39,11 +51,10 @@ if (downloadVideoBtn) {
     });
 }
 
-// Open modal when any download button is clicked
+// Download directly when any download button is clicked
 downloadBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-        installModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        triggerDownload();
     });
 });
 
@@ -71,51 +82,9 @@ document.addEventListener('keydown', (e) => {
 
 // Handle install button click - Download APK
 installButton.addEventListener('click', () => {
-    const originalText = installButton.innerHTML;
-    installButton.innerHTML = `
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="spin">
-            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
-        </svg>
-        Downloading...
-    `;
-    installButton.disabled = true;
-    
-    // Download APK file from Google Drive
-    const link = document.createElement('a');
-    link.href = 'https://drive.google.com/uc?export=download&id=1Ho72UV0JEtN3_6PAOxvVuHBSuk5c67kD';
-    link.download = 'VideoDown.apk';
-    link.target = '_blank';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    
-    installButton.innerHTML = `
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="20 6 9 17 4 12"></polyline>
-        </svg>
-        Download Started!
-    `;
-    installButton.style.background = '#16A34A';
-    
-    setTimeout(() => {
-        installModal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-        
-        setTimeout(() => {
-            installButton.innerHTML = originalText;
-            installButton.style.background = '';
-            installButton.disabled = false;
-        }, 300);
-    }, 1500);
+    triggerDownload();
 });
 
-// Handle platform button clicks
-platformButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const platform = button.textContent.trim();
-        alert(`Redirecting to ${platform}...`);
-    });
-});
 
 // FAQ Accordion
 faqItems.forEach(item => {

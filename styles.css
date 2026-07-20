@@ -372,31 +372,7 @@ body {
     padding: 20px 0;
 }
 
-.video-meta {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 16px;
-}
 
-.video-badge {
-    background: var(--color-secondary);
-    color: white;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.video-quality {
-    background: var(--color-muted);
-    color: var(--color-primary);
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
 
 .video-info h2 {
     font-size: 2rem;
@@ -874,11 +850,22 @@ body {
     border-radius: 24px;
     padding: 40px;
     max-width: 480px;
+    max-height: 90vh;
+    overflow-y: auto;
     width: 90%;
     position: relative;
     transform: scale(0.95);
     transition: transform 200ms ease;
     box-shadow: 0 25px 80px rgba(15, 23, 42, 0.3);
+}
+
+.modal-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
 }
 
 .modal.active .modal-content {
@@ -995,31 +982,7 @@ body {
     background: #8B5A06;
 }
 
-.platform-buttons {
-    display: flex;
-    gap: 12px;
-}
 
-.platform-button {
-    flex: 1;
-    padding: 14px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    border: 2px solid var(--color-border);
-    border-radius: 12px;
-    background: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    transition: all 150ms ease;
-}
-
-.platform-button:hover {
-    border-color: var(--color-secondary);
-    background: #EFF6FF;
-}
 
 .app-features {
     background: var(--color-muted);
@@ -1142,5 +1105,62 @@ body {
     .video-details {
         flex-wrap: wrap;
         gap: 16px;
+    }
+
+    .modal-content {
+        width: 94%;
+        padding: 28px 20px;
+        border-radius: 20px;
+    }
+
+    .modal-header h2 {
+        font-size: 1.35rem;
+    }
+
+    .modal-header p {
+        font-size: 0.9rem;
+    }
+
+    .close-button {
+        top: 14px;
+        right: 14px;
+        font-size: 1.6rem;
+    }
+
+    .app-preview {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .app-icon {
+        padding: 12px;
+    }
+
+    .app-icon svg {
+        width: 36px;
+        height: 36px;
+    }
+
+    .app-info h3 {
+        font-size: 1.1rem;
+    }
+
+    .rating {
+        justify-content: center;
+    }
+
+    .install-button {
+        padding: 14px;
+        font-size: 1rem;
+    }
+
+    .app-features {
+        gap: 10px;
+    }
+
+    .app-feature {
+        font-size: 0.85rem;
     }
 }
